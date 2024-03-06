@@ -1,0 +1,10 @@
+.question-container {
+    margin-bottom: 20px;
+  }
+  
+  
+.choices-container button {
+margin: 10px;
+padding: 10px 20px;
+font-size: 18px;
+}

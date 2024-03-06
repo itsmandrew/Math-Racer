@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Question from '../Question/Question';
+import Navbar from '../Navbar/Navbar';
 import generateMathProblem from '../../utils/generateQuestion';
+import './Game.css';
 
 const Game = () => {
   const [currentProblem, setCurrentProblem] = useState(generateMathProblem());
@@ -12,8 +14,8 @@ const Game = () => {
   };
 
   return (
-    <div>
-      <h1>Math Question Game</h1>
+    <div className="game-container">
+      <Navbar />
       <Question
         problem={currentProblem.problem}
         choices={currentProblem.choices}
