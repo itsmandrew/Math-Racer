@@ -1,5 +1,5 @@
+// Question.js
 import React from 'react';
-import './Question.css';
 
 const Question = ({ problem, choices, onAnswer }) => {
   return (
