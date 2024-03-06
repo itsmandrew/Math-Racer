@@ -1,17 +1,15 @@
+// App.js
 import React from 'react';
 import Game from './components/Game/Game';
+import Navbar from './components/Navbar/Navbar';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* Your existing header content */}
-      </header>
-
-      {/* Render the Game component */}
+    <div className="app">
+      <Navbar />
       <Game />
     </div>
   );
-}
+};
 
 export default App;
