@@ -9,8 +9,12 @@ const Game = () => {
 
   const handleAnswer = (selectedAnswer) => {
     const isCorrect = selectedAnswer === currentProblem.correctAnswer;
-    alert(isCorrect ? 'Correct!' : 'Wrong Answer');
-    setCurrentProblem(generateMathProblem());
+
+    if (isCorrect) {
+      setCurrentProblem(generateMathProblem());
+    } else {
+      console.log('Wrong answer clicked!');
+    }
   };
 
   return (
