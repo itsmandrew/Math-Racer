@@ -12,6 +12,8 @@ const Game = () => {
   const [baseSpeed] = useState(1);
   const [gameStarted, setGameStarted] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
+  const [startTime, setStartTime] = useState(0);
+  const [endTime, setEndTime] = useState(0);
   const [questionCount, setQuestionCount] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
 
@@ -30,6 +32,7 @@ const Game = () => {
   useEffect(() => {
     if (distance >= baseDistance) {
       setGameEnded(true);
+      setEndTime(Date.now());
     }
   }, [distance]);
 
@@ -42,10 +45,10 @@ const Game = () => {
       setTimeout(() => {
         setSpeed(baseSpeed);
       }, 500);
-    }
 
-    setQuestionCount((prevCount) => prevCount + 1);
-    setCurrentProblem(generateMathProblem());
+      setQuestionCount((prevCount) => prevCount + 1);
+      setCurrentProblem(generateMathProblem());
+    }
   };
 
   const handleStartGame = () => {
@@ -53,11 +56,14 @@ const Game = () => {
     setSpeed(baseSpeed);
     setGameStarted(true);
     setGameEnded(false);
+    setStartTime(Date.now());
     setQuestionCount(0);
     setCorrectCount(0);
   };
 
   const accuracy = questionCount > 0 ? Math.round((correctCount / questionCount) * 100) : 0;
+  const timeTaken = (endTime - startTime) / 1000; // Calculate time taken in seconds
+  const questionsPerMinute = timeTaken > 0 ? Math.round((questionCount / timeTaken) * 60) : 0;
 
   return (
     <div className="game-container">
@@ -73,15 +79,15 @@ const Game = () => {
             problem={currentProblem.problem}
             choices={currentProblem.choices}
             onAnswer={handleAnswer}
+            questionNumber={questionCount + 1}
           />
-          <div className="stats">
-            <p>Accuracy: {accuracy}%</p>
-          </div>
         </div>
       )}
       {gameEnded && (
         <div className="game-end">
           <h2>Game Finished!</h2>
+          <p>Time: {timeTaken.toFixed(2)} seconds</p>
+          <p>Rate: {questionsPerMinute}/min</p>
           <p>Accuracy: {accuracy}%</p>
           <button className="restart-button" onClick={handleStartGame}>
             Restart Game
