@@ -22,12 +22,12 @@ const HomePage = () => {
             <h3>MathRacer - Global Competition</h3>
             <p>Get better at math while racing against others!</p>
             <button className="enter-race-button" onClick={handleMultiplayerMode}>
-              Enter a Typing Race
+              Enter a Math Race
             </button>
           </div>
           <div className="mode-buttons-container">
             <div className="mode-button" onClick={handlePracticeMode}>
-              <h3>Typing Test</h3>
+              <h3>Math Test</h3>
               <p>Improve your typing skills on your own</p>
               <button>Practice Yourself</button>
             </div>
