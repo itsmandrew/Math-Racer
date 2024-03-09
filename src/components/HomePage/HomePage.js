@@ -17,11 +17,15 @@ const HomePage = () => {
   return (
     <div className="home-container">
       {selectedMode === null ? (
-        <>
-          <button className="enter-race-button" onClick={handleMultiplayerMode}>
-            Enter a Typing Race
-          </button>
-          <div className="mode-buttons">
+        <div className="home-content">
+          <div className="enter-race-button-container">
+            <h3>Race your friends</h3>
+            <p>Create your own racetrack and play with friends</p>
+            <button className="enter-race-button" onClick={handleMultiplayerMode}>
+              Enter a Typing Race
+            </button>
+          </div>
+          <div className="mode-buttons-container">
             <div className="mode-button" onClick={handlePracticeMode}>
               <h3>Typing Test</h3>
               <p>Improve your typing skills on your own</p>
@@ -33,11 +37,12 @@ const HomePage = () => {
               <button>Create Racetrack</button>
             </div>
           </div>
-        </>
+        </div>
       ) : selectedMode === 'practice' ? (
         <div className="game-wrapper">
             <Game />
         </div>
+
       ) : (
         <div>
           <h2>Multiplayer Game</h2>
