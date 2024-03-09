@@ -19,8 +19,8 @@ const HomePage = () => {
       {selectedMode === null ? (
         <div className="home-content">
           <div className="enter-race-button-container">
-            <h3>Race your friends</h3>
-            <p>Create your own racetrack and play with friends</p>
+            <h3>MathRacer - Global Competition</h3>
+            <p>Get better at math while racing against others!</p>
             <button className="enter-race-button" onClick={handleMultiplayerMode}>
               Enter a Typing Race
             </button>
