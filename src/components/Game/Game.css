@@ -7,6 +7,7 @@
   min-height: 100vh;
   text-align: center;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .game-content {

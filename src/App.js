@@ -1,13 +1,13 @@
 // App.js
 import React from 'react';
-import Game from './components/Game/Game';
 import Navbar from './components/Navbar/Navbar';
+import HomePage from './components/HomePage/HomePage';
 
 const App = () => {
   return (
     <div className="app">
       <Navbar />
-      <Game />
+      <HomePage />
     </div>
   );
 };

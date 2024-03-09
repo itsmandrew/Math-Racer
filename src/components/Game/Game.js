@@ -10,7 +10,6 @@ const Game = () => {
   const [distance, setDistance] = useState(0);
   const [speed, setSpeed] = useState(1);
   const [baseSpeed] = useState(1);
-  const [gameStarted, setGameStarted] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(0);
@@ -20,14 +19,18 @@ const Game = () => {
   const baseDistance = 500; // Set the base distance in pixels
 
   useEffect(() => {
-    if (gameStarted && !gameEnded && distance < baseDistance) {
+    setStartTime(Date.now());
+  }, []);
+
+  useEffect(() => {
+    if (!gameEnded && distance < baseDistance) {
       const timer = setTimeout(() => {
         setDistance((prevDistance) => prevDistance + speed);
       }, 100);
 
       return () => clearTimeout(timer);
     }
-  }, [gameStarted, gameEnded, distance, speed]);
+  }, [gameEnded, distance, speed]);
 
   useEffect(() => {
     if (distance >= baseDistance) {
@@ -51,10 +54,9 @@ const Game = () => {
     }
   };
 
-  const handleStartGame = () => {
+  const handleRestartGame = () => {
     setDistance(0);
     setSpeed(baseSpeed);
-    setGameStarted(true);
     setGameEnded(false);
     setStartTime(Date.now());
     setQuestionCount(0);
@@ -67,12 +69,7 @@ const Game = () => {
 
   return (
     <div className="game-container">
-      {!gameStarted && !gameEnded && (
-        <button className="start-button" onClick={handleStartGame}>
-          Start Game
-        </button>
-      )}
-      {gameStarted && !gameEnded && (
+      {!gameEnded && (
         <div className="game-content">
           <RaceTrack distance={distance} totalDistance={baseDistance} />
           <Question
@@ -89,7 +86,7 @@ const Game = () => {
           <p>Time: {timeTaken.toFixed(2)} seconds</p>
           <p>Rate: {questionsPerMinute}/min</p>
           <p>Accuracy: {accuracy}%</p>
-          <button className="restart-button" onClick={handleStartGame}>
+          <button className="restart-button" onClick={handleRestartGame}>
             Restart Game
           </button>
         </div>
